@@ -9,8 +9,8 @@ import 'package:taksi_pro/auth/registration.dart';
 import '../configure/app_colors.dart';
 import '../configure/app_widgets.dart';
 import '../controller/api_controller.dart';
+import '../dashboard/dashboard.dart';
 import 'otp_match_page.dart';
-
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -20,24 +20,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-  bool language   = false;
-  bool isFinished = false;
-
-  var phoneController     = TextEditingController();
-  var passwordController  = TextEditingController();
-  bool hidePassword = true;
-
-  @override
-  void dispose() {
-    phoneController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   void initState() {
-    // loginController.press.value = false;
     super.initState();
     const oneSec = Duration(seconds: 1);
     Timer.periodic(oneSec, (Timer t) {
@@ -52,149 +36,106 @@ class _LoginScreenState extends State<LoginScreen> {
     return Obx(
       () => internetController.internet.isTrue
           ? Scaffold(
-        backgroundColor: AppColors.secondaryColor,
-              body: SizedBox(
-                height: h,
-                width: w,
-                // decoration: AppStyle.backgroundStyle,
-                child: SafeArea(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    child: Column(
+              backgroundColor: AppColors.backgroundColor,
+              body: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    SizedBox(height: h*0.35),
+                    const Text('Sign in', style: AppStyle.title1,),
+                    SizedBox(height: h*0.04),
+
+                    /// Email Address Button
+                    SizedBox(
+                      height: h*0.065,
+                      width: w*0.8,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.grey.shade100
+                          ),
+                          onPressed: (){
+
+                          }, child: Text('Sign in with e-mail', style: GoogleFonts.poppins(
+                        textStyle: const TextStyle(
+                          fontSize: 18,
+                          color: AppColors.textColor,
+                        ),
+                      ),)),
+                    ),
+
+                    SizedBox(height: h*0.025),
+                    Text('or connect with', style: TextStyle(color: Colors.grey.shade700),),
+                    SizedBox(height: h*0.03),
+
+                    /// Facebook and Google Button
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-
-                        SizedBox(height: h*0.04),
-
-                        ///Logo
-                        Image.asset('assets/images/logo1.png'),
-
-                        /// Title Text
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: h * 0.03),
-                          child: const Text(
-                            'Welcome To Ict Heaven',
-                            style: AppStyle.titleText,
-                            textAlign: TextAlign.center,
+                        /// Facebook Button
+                        Container(
+                          height: h * 0.086,
+                          width: w * 0.2,
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent,
+                            borderRadius: BorderRadius.circular(17),
                           ),
+                          child: IconButton(
+                              color: Colors.white,
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.facebook_outlined,
+                                size: h * 0.053,
+                              )),
                         ),
-                        SizedBox(height: h*0.015,),
+                        SizedBox(width: w*0.07,),
 
-                        /// Number Text Field
-                        AppWidgets().inputField(
-                          context,
-                          controller: phoneController,
-                          hintText: 'phone',
-                          keyboardType: TextInputType.phone,
-                          readOnly:
-                          loginController.press.isFalse ? false : true,
-                          icon: const Icon(
-                            Icons.phone,
-                            color: AppColors.iconColor,
-                          ),
-                          autofillHints: AutofillHints.telephoneNumber,
-                        ),
-
-                        /// Password Text Field
-                        AppWidgets().inputField(context, controller: passwordController, hintText: 'password'.tr, keyboardType: TextInputType.visiblePassword, readOnly: loginController.press.isFalse ? false : true,
-                            icon: const Icon(Icons.lock_outline, color: AppColors.iconColor,), autofillHints: AutofillHints.password, obscureText: hidePassword,
-                            suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  hidePassword = !hidePassword;
-                                });
-                              },
-                              child: hidePassword
-                                  ? const Icon(
-                                Icons.visibility_off_outlined,
-                                color: AppColors.iconColor,
-                              )
-                                  : const Icon(
-                                Icons.visibility_outlined,
-                                color: AppColors.primaryColor,
-                              ),
-                            )
-                        ),
-
-                        SizedBox(height: h*0.015,),
-
-                        /// Login Button
-                        loginController.press.isFalse
-                            ? Padding(
-                                padding: EdgeInsets.only(bottom: h * 0.04),
-                                child: AppWidgets().button(
-                                  context,
-                                  text: 'Login',
-                                  height: h * 0.07,
-                                  width: w * 0.65,
-                                  radius: 10.0,
-                                  color: AppColors.primaryColor,
-                                  style: GoogleFonts.acme(
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22,
-                                      color: AppColors.primaryTextColor,
-                                    ),
+                        /// Google Button
+                        SizedBox(
+                            height: h * 0.086,
+                            width: w * 0.2,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18.0)
                                   ),
-                                  press: () {
-                                    // if (phoneController.text != '') {
-                                    //   registrationInfoController.phone.value = phoneController.text;
-                                    //   registrationInfoController.from.value = 'login';
-                                    //   registrationInfoController.type.value = 'login';
-                                    //   loginController.press.value = true;
-                                    //   sendOtpRequest(context, phone: phoneController.text, type: registrationInfoController.type.toString(), from: registrationInfoController.from.toString());
-                                    //
-                                    // } else if (phoneController.text == '') {
-                                    //   AppWidgets().wrongSnackBar(context, 'Enter valid Phone');
-                                    // }
-
-                                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OtpMatchScreen(phone: '01537263616')));
-
-                                  },
-                                ),
-                              )
-                            : const Center(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20),
-                                  child: CupertinoActivityIndicator(radius: 20,),
-                                ),
+                                  side: BorderSide(
+                                      color: Colors.grey.shade400,
+                                      width: 1.5
+                                  )
                               ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: h * 0.03),
-                          child: GestureDetector(
-                            onTap: () {
-                              // loginController.press.value = false;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const RegistrationScreen(),
-                                ),
-                              );
-                            },
-                            child: RichText(
-                              text: const TextSpan(
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: 'Don\'t have an account?',
-                                      style: AppStyle.title1),
-                                  TextSpan(
-                                    text: '  Register Now.',
-                                    style: AppStyle.title1,
-                                  ),
-                                ],
-                              ),
-                              textScaleFactor: 0.5,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
+                              onPressed: (){}, child: Image.asset('assets/images/google_icon.png', height: 40, width: 40,),))
+
                       ],
                     ),
-                  ),
+
+                    SizedBox(height: h*0.18),
+                    /// Not Account
+                    GestureDetector(
+                      onTap: () {
+                        Get.off(() => const RegistrationScreen(),
+                            duration: const Duration(milliseconds: 300),
+                            transition: Transition.upToDown);
+                      },
+                      child: RichText(
+                        text: const TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'Not account yet?',
+                              style: TextStyle(color: AppColors.greyColor, fontSize: 28, fontWeight: FontWeight.bold),),
+                            TextSpan(
+                              text: '  Sign up here',
+                              style: TextStyle(color: AppColors.blueColor, fontSize: 28, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        textScaleFactor: 0.5,
+                      ),
+                    ),
+
+                  ],
                 ),
               ),
             )
