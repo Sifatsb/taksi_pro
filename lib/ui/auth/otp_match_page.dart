@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../configure/app_colors.dart';
-import '../configure/app_widgets.dart';
-import '../controller/api_controller.dart';
-import '../dashboard/dashboard.dart';
+import '../../configure/app_colors.dart';
+import '../../configure/app_widgets.dart';
+import '../../controller/api_controller.dart';
+import '../../dashboard/dashboard.dart';
 
 class OtpMatchScreen extends StatefulWidget {
   var phone;

@@ -1,92 +1,211 @@
-// import 'package:flutter/material.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// mport 'package:flutter/material.dart';
+// import 'package:swoop_news/NecessaryComponent/screen_hight_width.dart';
+// import 'package:swoop_news/url_index/url_index.dart';
 //
-// void main() => runApp(MyApp());
+// class CustomTextEditingFieldV2 extends StatefulWidget {
+//   final TextEditingController textEditingController;
+//   final TextInputType? keyboardType;
+//   final bool obscure;
+//   final String? Function(String?)? validator;
+//   final int maxLine;
+//   final Widget? prefixIcon;
+//   final bool separatePrefixIcon;
+//   final TextInputAction? textInputAction;
+//   final bool showBorder;
+//   final bool isBorderColor;
+//   final bool isErrorTextColor;
+//   final bool isControllerTextColor;
+//   final bool isFocusBorderColor;
+//   final String? prefixImageLink;
+//   final int? maxLength;
+//   final String? hintText;
+//   final String stackLabelText;
+//   final Color? cursorColor;
+//   final double? prefixWidth;
+//   final double? prefixIconHeight;
+//   final Color? prefixIconColor;
+//   final Color? errorTextColor;
+//   final Color? controllerTextColor;
+//   final Color? borderColor;
+//   final Color? focusBorderColor;
+//   final Color? stackLabelTextColor;
+//   final bool? obscurePadding;
+//   final double? hintFontSize;
+//   final FontWeight? hintFontWeight;
+//   final Color? hintColor;
+//   final int? hintMaxLine;
+//   final bool readOnly;
+//   final bool signInVisibilityColor;
 //
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
+//   const CustomTextEditingFieldV2({
+//     Key? key,
+//     required this.textEditingController,
+//     required this.stackLabelText,
+//     this.stackLabelTextColor,
+//     this.keyboardType,
+//     this.errorTextColor,
+//     this.controllerTextColor,
+//     this.borderColor,
+//     this.focusBorderColor,
+//     this.validator,
+//     this.maxLine = 1,
+//     this.prefixIcon,
+//     this.separatePrefixIcon = false,
+//     this.isErrorTextColor = false,
+//     this.isControllerTextColor = false,
+//     this.textInputAction,
+//     this.showBorder = false,
+//     this.isBorderColor = false,
+//     this.isFocusBorderColor = false,
+//     this.prefixImageLink,
+//     this.maxLength,
+//     this.hintText,
+//     this.obscure = false,
+//     this.cursorColor,
+//     this.prefixWidth,
+//     this.prefixIconColor,
+//     this.prefixIconHeight,
+//     this.obscurePadding,
+//     this.hintFontSize,
+//     this.hintFontWeight,
+//     this.hintColor,
+//     this.hintMaxLine,
+//     this.readOnly = false,
+//     this.signInVisibilityColor = false,
+//   }) : super(key: key);
+//
 //   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
+//   State<CustomTextEditingFieldV2> createState() =>
+//       _CustomTextEditingFieldV2State();
+// }
+//
+// class _CustomTextEditingFieldV2State extends State<CustomTextEditingFieldV2> {
+//   bool obscure = false;
+//
+//
+//   @override
+//   void initState() {
+//     obscure = widget.obscure;
+//     super.initState();
 //   }
-// }
 //
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key key, this.title}) : super(key: key);
-//   final String title;
-//
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-//
-// class _MyHomePageState extends State<MyHomePage> {
+//   double borderRadius = 5;
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return Container(
-//       color: Color(0xffffffff),
-//       child: Stack(
-//         children: [
-//           Padding(
-//             padding: const EdgeInsets.only(bottom: 2.0),
-//             child:ClipPath(
-//               clipper: ClippingClass(),
-//               child: Container(
-//                 width: MediaQuery
-//                     .of(context)
-//                     .size
-//                     .width,
-//                 height: 320.0,
-//                 decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                         fit: BoxFit.fill,
-//                         image: NetworkImage(
-//                             "https://images.unsplash.com/photo-1526906346362-d9725bfeeb3c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"))
-//                 ),
+//     final width = ScreenSize(context).width;
+//
+//     return Stack(
+//       children: [
+//         Padding(
+//           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+//           child: TextFormField(
+//
+//             maxLines: widget.maxLine,
+//             obscuringCharacter: '•',
+//             obscureText: obscure,
+//             style:  TextStyle(color: widget.isControllerTextColor? widget.controllerTextColor : blackColor),
+//             validator: widget.validator,
+//             controller: widget.textEditingController,
+//             onChanged: (val) {
+//               setState(() {
+//                 val = widget.textEditingController.text;
+//               });
+//             },
+//             decoration: InputDecoration(
+//
+//               errorStyle: TextStyle(
+//                 color:widget.isErrorTextColor? widget.errorTextColor:redColor,
+//                 fontSize: 8,
 //               ),
+//               filled: true,
+//               fillColor: widget.textEditingController.text.isNotEmpty &&
+//                   widget.showBorder
+//                   ? Colors.white
+//                   : Colors.transparent,
+//               hintText: widget.hintText,
+//               hintStyle: TextStyle(color: Color(0xffDE4E98)),
+//               contentPadding: const EdgeInsets.fromLTRB(12, 20, 0, 20),
+//               focusedBorder: OutlineInputBorder(
+//                 borderSide: widget.isFocusBorderColor
+//                     ? BorderSide(color: widget.focusBorderColor!)
+//                     : BorderSide(color: Colors.white),
+//                 borderRadius: BorderRadius.circular(5),
+//               ),
+//               focusedErrorBorder: OutlineInputBorder(
+//                 borderSide: BorderSide(color: Colors.redAccent),
+//                 borderRadius: BorderRadius.circular(5),
+//               ),
+//               errorBorder: OutlineInputBorder(
+//                 borderSide: BorderSide(color: Colors.redAccent),
+//                 borderRadius: BorderRadius.circular(5),
+//               ),
+//               enabledBorder: OutlineInputBorder(
+//                 borderSide: widget.isBorderColor
+//                     ? BorderSide(width: 1, color: widget.borderColor!)
+//                     : BorderSide(width: 1, color: Colors.white),
+//                 //<-- SEE HERE
+//                 borderRadius: BorderRadius.circular(5.0),
+//               ),
+//               suffixIcon: widget.obscure
+//                   ? obscure
+//                   ? IconButton(
+//                   onPressed: () {
+//                     setState(() {
+//                       obscure = !obscure;
+//                     });
+//                   },
+//                   icon: widget.obscure
+//                       ? widget.obscurePadding!
+//                       ? Icon(Icons.remove_red_eye,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor)
+//                       : Icon(Icons.remove_red_eye,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor)
+//                       : Icon(Icons.remove_red_eye,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor))
+//                   : IconButton(
+//                   onPressed: () {
+//                     setState(() {
+//                       obscure = !obscure;
+//                     });
+//                   },
+//                   icon: widget.obscure
+//                       ? widget.obscurePadding!
+//                       ? Icon(Icons.visibility_off,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor)
+//                       : Icon(Icons.visibility_off,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor)
+//                       : Icon(Icons.visibility_off,
+//                       color: widget.signInVisibilityColor
+//                           ? whiteColor
+//                           : purpleColor))
+//                   : null,
 //             ),
 //           ),
-//
-//           Positioned(
-//               top: 270,
-//               left: 18.0,
-//
-//               child: Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: Icon(FontAwesomeIcons.play,
-//                     color: new Color(0xffd60506),
-//                     size: 40.0),
-//               )
+//         ),
+//         Positioned(
+//           top: 3,
+//           bottom: -6,
+//           left: 12,
+//           child: Text(
+//             widget.stackLabelText.toString(),
+//             style: widget.textEditingController.text.isNotEmpty &&
+//                 widget.showBorder
+//                 ? TextStyle(color: Colors.black, fontSize: 12)
+//                 : TextStyle(color: widget.stackLabelTextColor, fontSize: 12),
 //           ),
-//
-//         ],
-//       ),
+//         ),
+//       ],
 //     );
 //   }
 // }
-//
-// class ClippingClass extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     var path = Path();
-//     path.lineTo(0.0, size.height-40);
-//     path.quadraticBezierTo(size.width / 4, size.height,
-//         size.width / 2, size.height);
-//     path.quadraticBezierTo(size.width - (size.width / 4), size.height,
-//         size.width, size.height - 40);
-//     path.lineTo(size.width, 0.0);
-//     path.close();
-//     return path;
-//   }
-//
-//   @override
-//   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-// }
-//

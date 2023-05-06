@@ -4,12 +4,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../auth/login.dart';
-import '../auth/registration.dart';
 import '../configure/app_colors.dart';
 import '../configure/app_widgets.dart';
 import '../controller/api_controller.dart';
+import '../ui/auth/login.dart';
+import '../ui/auth/registration.dart';
 
 
 class StarterScreen extends StatefulWidget {

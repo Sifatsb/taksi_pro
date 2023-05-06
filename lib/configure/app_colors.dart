@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppColors{
   static const primaryColor                = Colors.white;
@@ -11,6 +10,7 @@ class AppColors{
   static const appBarColor                 = Colors.white;
   static const redColor                    = Colors.redAccent;
   static const blueColor                   = Colors.blueAccent;
+  static const orangeColor                 = Colors.orangeAccent;
   static const greyColor                   = Color(0xFF8a9694);
   static const textColor                   = Colors.black;
   static const secondaryTextColor          = Colors.white;
@@ -28,8 +28,8 @@ class AppStyle{
   static const splashTitle        = 'TAKSI PRO';
   static const checkOutStyle      = TextStyle(fontWeight: FontWeight.w600, fontSize: 15);
   static const checkOutTextStyle  = TextStyle(fontWeight: FontWeight.w300, fontSize: 16, color: AppColors.textColor);
-  static const title1             = TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: AppColors.textColor);
-  static const title2             = TextStyle(fontWeight: FontWeight.bold, fontSize: 28, color: AppColors.primaryTextColor);
+  static const title1             = TextStyle(fontWeight: FontWeight.w500, fontSize: 24, color: AppColors.textColor);
+  static const title2             = TextStyle(fontWeight: FontWeight.w600, fontSize: 22, color: AppColors.primaryTextColor);
   static const title3             = TextStyle(fontWeight: FontWeight.w600, fontSize: 20, color: AppColors.textColor);
   static const title3Override     = TextStyle(fontWeight: FontWeight.w400, fontSize: 18, color: AppColors.textColor);
   static const namazText          = TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: AppColors.textColor);

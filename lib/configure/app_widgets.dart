@@ -2,14 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
-import '../auth/login.dart';
 import '../controller/api_controller.dart';
 import '../controller/image_controller/image_get.dart';
+import '../ui/auth/login.dart';
 import 'app_colors.dart';
 
 class AppWidgets {
@@ -108,6 +107,63 @@ class AppWidgets {
     );
   }
 
+  /// Custom New Text Field
+  customTextField(BuildContext context,
+      {autoFocus,
+        controller,
+        hintText,
+        keyboardType,
+        autofillHints,
+        left,
+        right,
+        top,
+        bottom,
+        readOnly,
+        textCapitalization,
+        label,
+        validator,
+        minLine,
+        maxLine,
+        height}) {
+    return Padding(
+      padding: EdgeInsets.only(
+          left: left ?? 0.0,
+          right: right ?? 0.0,
+          top: top ?? 0.0,
+          bottom: bottom ?? 0.0),
+      child: TextFormField(
+        controller: controller,
+        validator: validator,
+        cursorColor: Colors.black,
+        minLines: minLine ?? 1,
+        maxLines: maxLine ?? 3,
+        autofocus: autoFocus ?? false,
+        readOnly: readOnly ?? false,
+        style: const TextStyle(
+            color: Colors.black, fontSize: 16, letterSpacing: 1),
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: const TextStyle(fontSize: 15),
+          filled: true,
+          labelText: label,
+          labelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+          fillColor: AppColors.greyColor.withOpacity(0.2),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.greyColor,
+                  width: 2
+            )
+          ),
+          contentPadding: const EdgeInsets.only(
+            top: 8,
+            bottom: 18,
+            left: 10,
+          ),
+        ),
+      ),
+    );
+  }
+
   ///Message Field
   msgInputField(BuildContext context, {controller, hintText, keyboardType, icon, obscureText, suffixIcon, readOnly, maxLine, minLine}){
     var h = MediaQuery.of(context).size.height;
@@ -174,10 +230,10 @@ class AppWidgets {
   appBar(BuildContext context){
     return AppBar(
       elevation: 0,
-      backgroundColor: AppColors.secondaryColor,
+      backgroundColor: AppColors.primaryColor,
       leading: IconButton(onPressed: () {
         Navigator.pop(context);
-      }, icon: const Icon(Icons.arrow_back, color: Colors.white,),),
+      }, icon: const Icon(Icons.arrow_back, color: Colors.black,),),
     );
   }
 
@@ -453,6 +509,8 @@ class AppWidgets {
     );
     return exitApp;
   }
+
+  /// Logout
   logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', '');

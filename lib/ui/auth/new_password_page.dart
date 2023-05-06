@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../configure/app_colors.dart';
+import '../../configure/app_widgets.dart';
 import '../../controller/api_controller.dart';
-import '../configure/app_widgets.dart';
 import 'login.dart';
 
 class NewPasswordScreen extends StatefulWidget {

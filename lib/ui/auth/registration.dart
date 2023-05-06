@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taksi_pro/dashboard/dashboard.dart';
+import '../../configure/app_colors.dart';
+import '../../configure/app_widgets.dart';
+import '../../controller/api_controller.dart';
 import '../../controller/image_controller/image_get.dart';
-import '../configure/app_colors.dart';
-import '../configure/app_widgets.dart';
-import '../controller/api_controller.dart';
 import 'login.dart';
+import 'login_with_email_page.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -94,15 +94,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         width: w*0.8,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.grey.shade100
+                            backgroundColor: Colors.grey.shade100,
+                            elevation: 0.7
                           ),
                             onPressed: (){
-                              Get.to(() => const DashboardScreen(),
+                              Get.to(() => const LoginWithEmailScreen(),
                                   duration: const Duration(milliseconds: 300),
                                   transition: Transition.downToUp);
                             }, child: Text('Enter your e-mail address', style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             color: AppColors.textColor,
                           ),
                         ),)),
@@ -128,7 +129,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 onPressed: () {},
                                 icon: Icon(
                                   Icons.facebook_outlined,
-                                  size: h * 0.053,
+                                  size: h * 0.048,
                                 )),
                           ),
                           SizedBox(width: w*0.07,),
@@ -148,7 +149,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   width: 1.5
                                 )
                               ),
-                              onPressed: (){}, child: Image.asset('assets/images/google_icon.png', height: 40, width: 40,),))
+                              onPressed: (){}, child: Image.asset('assets/images/google_icon.png', height: 32, width: 32,),))
 
                         ],
                       ),

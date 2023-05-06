@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:taksi_pro/auth/registration.dart';
 import '../../configure/app_colors.dart';
-import '../auth/login.dart';
 import '../controller/api_controller.dart';
+import '../ui/auth/registration.dart';
 import 'entry_screen.dart';
 
 class AnimatedSplashScreen extends StatefulWidget {
