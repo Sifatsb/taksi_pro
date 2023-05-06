@@ -98,6 +98,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             elevation: 0.7
                           ),
                             onPressed: (){
+                            debugPrint('chnages applied');
                               Get.to(() => const LoginWithEmailScreen(),
                                   duration: const Duration(milliseconds: 300),
                                   transition: Transition.downToUp);
