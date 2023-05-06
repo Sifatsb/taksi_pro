@@ -127,7 +127,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                             child: IconButton(
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  debugPrint('On pressed');
+                                },
                                 icon: Icon(
                                   Icons.facebook_outlined,
                                   size: h * 0.048,
